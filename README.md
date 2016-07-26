@@ -14,23 +14,25 @@ If you want to place your compressed docker tarball elsewhere on the host, repla
 How to run the Docker container on a host manually (without Marathon):
 ---------------------------------------------------------------------
 
+```
 docker run -e $PATH=$PATH --rm -v /etc/:/data -v /opt/mesosphere/bin:/go/src/github.com/awslabs/amazon-ecr-credential-helper/bin/local/ erinmcgill/ecr-helper
+```
 
 Some explanation of the above command:
 
-"-v /etc/:/data" :
+```-v /etc/:/data``` :
 Inside the container, there is a docker.tar.gz artifact that contains the necessary configuration file format to be able to use the ECR helper. This compressed tarball consists of only .docker/config.json as directed in the Mesosphere DCOS directions.
 
-/data : the directory where the credentials are placed within the container
+```/data``` : the directory where the credentials are placed within the container
 
-/etc: the directory on the how where the Marathon application configuration expects to find the compressed configuration artifact. In all other application configurations that pull from ECR, you need to set the URI to look in this directory. In the below example, it is indicated by "file:///etc/docker.tar.gz"
+```/etc``` : the directory on the how where the Marathon application configuration expects to find the compressed configuration artifact. In all other application configurations that pull from ECR, you need to set the URI to look in this directory. In the below example, it is indicated by "file:///etc/docker.tar.gz"
 
-"-v /opt/mesosphere/bin:/go/src/github.com/awslabs/amazon-ecr-credential-helper/bin/local/" :
+```-v /opt/mesosphere/bin:/go/src/github.com/awslabs/amazon-ecr-credential-helper/bin/local/``` :
 The container pulls are zipped copy of the github repository then runs a make to create the ecr login helper.
 
-/go/src/github.com/awslabs/amazon-ecr-credential-helper/bin/local/: the location inside the container where the credential binary is created
+```/go/src/github.com/awslabs/amazon-ecr-credential-helper/bin/local/``` : the location inside the container where the credential binary is created
 
-/opt/mesosphere/bin : The location on the host itself where the binary will be placed to be used when pulling images from ECR
+```/opt/mesosphere/bin``` : The location on the host itself where the binary will be placed to be used when pulling images from ECR
 
 How to run the Docker container using Marathon:
 ----------------------------------------------
@@ -90,7 +92,7 @@ Changes:
 
 Create an image from this repository
 ------------------------------------
-**Built it**
+**Build it**
 
 ```
 docker build -t ecr-helper .
