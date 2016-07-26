@@ -37,7 +37,7 @@ How to run the Docker container using Marathon:
 
 Within Marathon, create the app with the following configuration:
 
-:::json
+```json
 {
 "id": "/erinmcgill/ecr-helper",
 "cmd": null,
@@ -78,6 +78,7 @@ Within Marathon, create the app with the following configuration:
 }
 ]
 }
+```
 
 Using the Cloudformation template:
 ---------------------------------
