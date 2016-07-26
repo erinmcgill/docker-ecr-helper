@@ -88,9 +88,16 @@ Changes:
 - Smaller instance types
 - Added read-only permissions to ECR for the IAM EC2 instance roles
 
-**Create an image from the docker file**
+Create an image from this repository
+------------------------------------
+**Built it**
+
+```
 docker build -t ecr-helper .
+```
 
-Run it - mount the hosts directory inside
-docker run -e $PATH=$PATH --rm -v ~/.docker:/data -v /opt/mesosphere/bin:/go/src/github.com/awslabs/amazon-ecr-credential-helper/bin/local/ ecr-helper
+**Run it** - mount the hosts directory inside as well as set the host's environment path in the container
 
+```
+docker run -e $PATH=$PATH --rm -v /etc:/data -v /opt/mesosphere/bin:/go/src/github.com/awslabs/amazon-ecr-credential-helper/bin/local/ ecr-helper
+```
