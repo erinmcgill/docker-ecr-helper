@@ -1,5 +1,5 @@
 **This Docker image should be used for Marathon**
-   =============================================
+================================================
 **The image compliles the ECR helper Go binary from https://github.com/awslabs/amazon-ecr-credential-helper**
 When the Docker container is run, it compliles the binary, places the binary as well as the compressed tarball containing the
 helper configuration file, on the host itself so that they can be used for subsequent ECR pulls for all account ECR docker images.
@@ -36,6 +36,7 @@ How to run the Docker container using Marathon:
 ----------------------------------------------
 
 Within Marathon, create the app with the following configuration:
+
 :::json
 {
 "id": "/erinmcgill/ecr-helper",
