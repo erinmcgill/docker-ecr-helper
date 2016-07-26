@@ -9,4 +9,4 @@ RUN mkdir -p src/github.com/awslabs/amazon-ecr-credential-helper/ && wget -O src
 WORKDIR /go/src/github.com/awslabs/amazon-ecr-credential-helper/
 RUN unzip master.zip && mv amazon-ecr-credential-helper-master/* . && rm -rf amazon-ecr-credential-helper-master && rm -f master.zip
 
-CMD /usr/bin/make && cp /tmp/docker.tar.gz /data && cp /tmp/docker-credential-helper.zip /data
+CMD /usr/bin/make && cp /tmp/docker.tar.gz /data 
