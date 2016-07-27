@@ -4,7 +4,9 @@
 When the Docker container is run, it compliles the binary, places the binary as well as the compressed tarball containing the
 helper configuration file, on the host itself so that they can be used for subsequent ECR pulls for all account ECR docker images.
 
-The container only needs to run one time on the slave host.
+There are no secrets in here nor are there any secrets needed at runtime - it's magic!
+
+The container only needs to run once on the slave host to be able to pull images from ECR.
 
 After it has run, the Marathon application configurations **HAVE** to have the tar file in the URI.
 In the example below, that file URI will be: file:///etc/docker.tar.gz
