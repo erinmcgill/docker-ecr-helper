@@ -5,7 +5,9 @@ FROM golang:1.6
 
 MAINTAINER Erin "EMoney" McGill
 
-RUN apt-get -y update && apt-get install unzip
+RUN apt-get update && apt-get install -y \ 
+    unzip \
+    && rm -rf /var/lib/apt/lists/*
 
 # Marathon requires a gzipped credntial file - this compressed tarball contains ./docker/config.json
 # The JSON file contains the following: { "credsStore": "ecr-login" }
@@ -16,8 +18,9 @@ COPY docker.tar.gz /tmp/
 # Creating the necessary github directories and pulling a zip of the master branch from the repository using the wget command
 # This avoids having to install the Git client
 
-RUN mkdir -p src/github.com/awslabs/amazon-ecr-credential-helper/ && \
-    wget -O src/github.com/awslabs/amazon-ecr-credential-helper/master.zip --no-check-certificate https://github.com/awslabs/amazon-ecr-credential-helper/archive/master.zip
+RUN mkdir -p /go/src/github.com/awslabs/amazon-ecr-credential-helper/
+
+ADD https://github.com/awslabs/amazon-ecr-credential-helper/archive/master.zip /go/src/github.com/awslabs/amazon-ecr-credential-helper/master.zip
 
 WORKDIR /go/src/github.com/awslabs/amazon-ecr-credential-helper/
 RUN unzip master.zip && \
